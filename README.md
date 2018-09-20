@@ -1,13 +1,13 @@
-# Brette Model Simulation and Linear Response Calculation:
-### Python code for multi-compartment model simulation and linear response function calculation
+# Brette Model Simulation and Linear Response Function Calculation:
+### Python codes for multi-compartment model simulation and linear response function calculation
 
 To run simulations, we used NEURON 7.3 with Python 2.6. 
 
-1. Compile the neuron model:
+## 1. Compile the neuron model:
 
     a. Go to directory ~/Code_git/Models/Brette. Compile the mod file with nrnivmodl.
 
-2. Search mean and std of stimulus to reproduce expected firing rate and firing pattern for the neuron model. 
+## 2. Search mean and std of stimulus to reproduce expected firing rate and firing pattern for the neuron model. 
 
     a. Find the axonal voltage with the maximum votlage derivative as spike detection voltage. Go to directory ~/Code_git/Parameters. In param_step0.py, set thresold to 60mV. Injecting the neuron model with a constant input, one can determine the spike detection voltage. To run this file: ~/Code/Models/Brette/x86_64/special -python param_step0.py
     
