@@ -2,13 +2,21 @@
 
 The Python code here simulates a simple multi-compartment model proposed by [Brette 2013](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003338) and calculates its linear response functions which describe the population encoding ability of the neuron model. 
 
-It first provides a procedure to determine the axonal voltages for spike time detection and voltage reset to finish a spike. It also provides a parameter searching procedure to determine mean and std of stochastic stimulus which reproduce expected firing rate and coefficient variation of iter-spike intervals of the neuron model. Thirdly, it implements the methods proposed by [Higgs et al. 2009](http://www.jneurosci.org/content/29/5/1285.long) to calculate the linear response functions of the neuron model which shows the impact of neuron morphology, spike initiation dynamics and stimulus properties on population encoding abilities.
+It first provides a procedure to determine the axonal voltages for spike time detection and voltage reset to finish a spike. It also provides a parameter searching procedure to determine mean and std of stochastic stimulus which reproduce expected firing rate and coefficient variation of iter-spike intervals of the neuron model. Thirdly, it implements the methods proposed by [Higgs et al. 2009](http://www.jneurosci.org/content/29/5/1285.long) to calculate the linear response functions of the neuron model which shows the impact of neuron morphology, spike initiation dynamics and stimulus properties on population encoding abilities. In the last part, it provides a procedure for calculating bootstrapping confidence intervals and null hypothesis test curves. This is the code for our [manuscript](https://arxiv.org/abs/1807.00509). 
 
-This is the code for our [manuscript](https://arxiv.org/abs/1807.00509). To run simulations, we used NEURON 7.3 with Python 2.6. 
+## 1. How to Get Started
 
-## 1. Compile the neuron model:
+To run the code, we used Python 2.6 complied with NEURON 7.3. Place the code folder Code_git in home directory, go to directory ~/Code_git/Models/Brette. Compile the mod file with command nrnivmodl. The other two directories Brette_ka01 and Brette_soma10_ka01 contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models.
 
- - Go to directory ~/Code_git/Models/Brette. Compile the mod file with nrnivmodl.
+## 2. Determine Axonal Voltage for Spike Time Dectection and Reset Voltage to Finish A Spike
+
+Brette model is a simple multi-compartment model composed of a soma and an axon. Only sodium channels are located at point on the axon for spike generation (AP initiation site). The rest of the neuron model is passive. To finish a spike, it requires to reset the voltage of the whole neuron when the axonal voltage at the AP initiation site reaches some specific value. We call this reset threshold. To determine the spike time, we choose the axonal voltage with the maximum voltage derivative for spike time dectection.
+
+model_simulation.py in ~/Code_git/Parameters provides a function for model simulation and a function for stimulus generation. It also provides self-test code to run model simulation with the following command:
+
+```python
+~/Code_git/Models/Brette/x86_64/special -python model_simulation.py Brette
+```
 
 ## 2. Search mean and std of stimulus to reproduce expected firing rate and firing pattern for the neuron model. 
 
