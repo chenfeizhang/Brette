@@ -1,10 +1,10 @@
-# Python Codes for Neuron Model Simulation and Linear Response Function Calculation:
+# Python Code for Neuron Model Simulation and Linear Response Function Calculation:
 
-Python codes here simulate a simple multi-compartment model proposed by [Brette 2013](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003338) and study  
+The Python code here simulates a simple multi-compartment model proposed by [Brette 2013](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003338) and calculates its linear response functions which describes population encoding ability. 
 
-[manuscript](https://arxiv.org/abs/1807.00509)
+It provides a procedure to determine the axonal voltages for spike time detection and voltage reset to finish a spike. It also provides a parameter searching procedure to determine mean and std of stochastic stimulus which reproduce expected firing rate and coefficient variation of iter-spike intervals of the neuron model. In the third par
 
-To run simulations, we used NEURON 7.3 with Python 2.6. 
+This is the code for our [manuscript](https://arxiv.org/abs/1807.00509). To run simulations, we used NEURON 7.3 with Python 2.6. 
 
 ## 1. Compile the neuron model:
 
