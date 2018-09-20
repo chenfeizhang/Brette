@@ -8,7 +8,7 @@ It first provides a procedure to determine the axonal voltages for spike time de
 
 To run the code, we used Python 2.6 complied with NEURON 7.3. Place the code folder Code_git in home directory, go to directory ~/Code_git/Models/Brette. Compile the mod file with command nrnivmodl. The other two directories Brette_ka01 and Brette_soma10_ka01 contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models.
 
-## 2. Determine Axonal Voltage for Spike Time Dectection and Reset Voltage to Finish A Spike
+## 2. Determine Axonal Voltage for Spike Time Dectection
 
 Brette model is a simple multi-compartment model composed of a soma and an axon. Only sodium channels are located at point on the axon for spike generation (AP initiation site). The rest of the neuron model is passive. To finish a spike, it requires to reset the voltage of the whole neuron when the axonal voltage at the AP initiation site reaches some specific value. We call this reset threshold. To determine the spike time, we choose the axonal voltage with the maximum voltage derivative for spike time dectection.
 
@@ -17,6 +17,8 @@ model_simulation.py in ~/Code_git/Parameters provides a function for model simul
 ```python
 ~/Code_git/Models/Brette/x86_64/special -python model_simulation.py Brette
 ```
+To determine spike time dectection voltage at the AP initiation site, we first set reset threshold to the reserval potential of sodium channels, which is 60mV. Injecting the soma with a constant stimulus of appropriate size, choose the axonal voltage with the maximum voltage derivative as the spike detection voltage. The stimulus size should be large enough to make axonal voltage pass half-activation voltage of sodium channels, which is -40mV. It also shouldn't be too large to make the voltage larger than the reserval potential. Spike detection voltage is quite insensitive to the constant stimulus amplitude. In fact, the axonal voltages around the spike detection voltage will usually fall in the same time bin during the simulation, which will not affect spike time detection.
+
 
 ## 2. Search mean and std of stimulus to reproduce expected firing rate and firing pattern for the neuron model. 
 
