@@ -14,7 +14,7 @@ Brette model is a simple multi-compartment model composed of a soma and an axon.
 
 model_simulation.py in ~/Code_git/Parameters provides a function for model simulation and a function for stimulus generation. It also provides self-test code to run model simulation with the following command:
 
-```python
+```
 ~/Code_git/Models/Brette/x86_64/special -python model_simulation.py Brette
 ```
 To determine spike time dectection voltage at the AP initiation site, we first set reset threshold to the reserval potential of sodium channels, which is 60mV. Injecting the soma with a constant stimulus of appropriate size, choose the axonal voltage with the maximum voltage derivative as the spike detection voltage. The stimulus size should be large enough to make axonal voltage pass half-activation voltage of sodium channels, which is -40mV. It also shouldn't be too large to make the voltage larger than the reserval potential. Spike detection voltage is quite insensitive to the constant stimulus amplitude. In fact, the axonal voltages around the spike detection voltage will usually fall in the same time bin during the simulation, which will not affect spike time detection.
