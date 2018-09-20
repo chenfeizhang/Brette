@@ -2,11 +2,11 @@
 
 The Python code here simulates a simple multi-compartment model proposed by [Brette 2013](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003338) and calculates its linear response functions which describe the population encoding ability of the neuron model. 
 
-It first provides a procedure to determine the axonal voltages for spike time detection and voltage reset to finish a spike. It also provides a parameter searching procedure to determine mean and std of stochastic stimulus which reproduce expected firing rate and coefficient variation of iter-spike intervals of the neuron model. Thirdly, it implements the methods proposed by [Higgs et al. 2009](http://www.jneurosci.org/content/29/5/1285.long) to calculate the linear response functions of the neuron model which shows the impact of neuron morphology, spike initiation dynamics and stimulus properties on population encoding abilities. In the last part, it provides a procedure for calculating bootstrapping confidence intervals and null hypothesis test curves. This is the code for our [manuscript](https://arxiv.org/abs/1807.00509). 
+It first provides a procedure to determine the axonal voltages for spike time detection and voltage reset to finish a spike. It also provides a parameter searching procedure to determine mean and std of stochastic stimulus which reproduce expected firing rate and coefficient variation (CV) of iter-spike intervals (ISI) of the neuron model. Thirdly, it implements the methods proposed by [Higgs et al. 2009](http://www.jneurosci.org/content/29/5/1285.long) to calculate the linear response functions of the neuron model which shows the impact of neuron morphology, spike initiation dynamics and stimulus properties on population encoding abilities. In the last part, it provides a procedure for calculating bootstrapping confidence intervals and null hypothesis test curves. This is the code for our [manuscript](https://arxiv.org/abs/1807.00509). 
 
 ## 1. How to Get Started
 
-To run the code, we used Python 2.6 complied with NEURON 7.3. Place the code folder Code_git in home directory, go to directory ~/Code_git/Models/Brette. Compile the mod file with command ```nrnivmodl```. The other two directories Brette_ka01 and Brette_soma10_ka01 contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models.
+To run the code, we used Python 2.6 complied with NEURON 7.3. Some scripts are run on the cluster. Place the code folder Code_git in home directory, go to directory ~/Code_git/Models/Brette. Compile the mod file with command ```nrnivmodl```. The other two directories Brette_ka01 and Brette_soma10_ka01 contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models. 
 
 ## 2. Determine Axonal Voltage for Spike Time Dectection
 
@@ -20,13 +20,13 @@ model_simulation.py in ~/Code_git/Parameters provides a function for model simul
 To determine spike time dectection voltage at the AP initiation site, we first set reset threshold to the reserval potential of sodium channels, which is 60mV. Injecting the soma with a constant stimulus of appropriate size, choose the axonal voltage with the maximum voltage derivative as the spike detection voltage. The stimulus size should be large enough to make axonal voltage pass half-activation voltage of sodium channels, which is -40mV. It also shouldn't be too large to make the voltage larger than the reserval potential. Spike detection voltage is quite insensitive to the constant stimulus amplitude. In fact, the axonal voltages around the spike detection voltage will usually fall in the same time bin during the simulation, which will not affect spike time detection.
 
 
-## 2. Search mean and std of stimulus to reproduce expected firing rate and firing pattern for the neuron model. 
+## 3. Determine mean and std of stimulus to reproduce expected firing rate and CV for the neuron model. 
 
-a. Find the axonal voltage with the maximum votlage derivative as spike detection voltage. Go to directory ~/Code_git/Parameters. In param_step0.py, set thresold to 60mV. Injecting the neuron model with a constant input, one can determine the spike detection voltage. To run this file: ~/Code/Models/Brette/x86_64/special -python param_step0.py
+Reset threshold is defined as the axonal voltage 2ms after the spike detection voltage at the constant input that generates expected firing rate. First temporarily set reset threshold slightly larger than spike detection voltage to determine the constant input. Then with the constant input to find final reset threshold.
+
+In ~/Code_git/Paramters, param_step1_runjobs.py calls param_step1_runme.py to find the constant input that about to trigger spikes and the constant input that generates 5Hz firing rate. To find targer stimuli, we set the upper bound and lower bound of the stimuli by hand, and use middle point searching method. firingonset.py in ~/Code_git/scripts contains the function that implements this searching method.
     
-    b. Temporarily taking the voltage slightly larger than the spike detection voltage as the reset voltage, search for the constant input to generate 5Hz firing rate in the neuron model with the files param_step1_runjobs.py and param_step1_runme.py. Under the constant input for 5Hz firing rate, take the axonal voltage 2ms after the spike detection voltage as the reset voltage.
-    
-    c. For a given mean of the stimulus, search for the std of the stimulus to reproduce 5Hz firing rate with param_step2_runjobs.py and param_step2_runme.py.
+
     
     d. Summarize the mean-std and mean-CV relation with param_step3.py. Find the mean and std that reproduce expected firing rate and CV by hand.
     
