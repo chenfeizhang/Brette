@@ -1,4 +1,6 @@
-# Python codes for Brette Model Simulation and Linear Response Function Calculation:
+# Python Codes for Neuron Model Simulation and Linear Response Function Calculation:
+
+
 
 To run simulations, we used NEURON 7.3 with Python 2.6. 
 
