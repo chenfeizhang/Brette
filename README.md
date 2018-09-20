@@ -1,5 +1,5 @@
-# Brette
-Python code for a simple multi-compartment model simulation and linear response function calculation
+# Brette Model Simulation and Linear Response Calculation:
+### Python code for multi-compartment model simulation and linear response function calculation
 
 To run simulations, we used NEURON 7.3 with Python 2.6. 
 
