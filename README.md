@@ -5,9 +5,9 @@ To run the simulation, we used NEURON 7.3 with Python 2.6.
 
 1. Compile the neuron model:
 
-    a. Go to the directory ~/Code/Models/Brette. Compile the mod files with nrnivmodl.
+    a. Go to directory ~/Code_git/Models/Brette. Compile the mod files with nrnivmodl.
 
-2. Searching for the parameters of the stimulus for simulation 
+2. Search for parameters of the stimulus for simulation 
 
     a. Determine the axonal voltage with the maximum votlage derivative as spike detection voltage. In param_step0.py, set thresold to 60mV. Injecting the neuron model with a constant input, one can determine the spike detection voltage. To run this file: ~/Code/Models/Brette/x86_64/special -python param_step0.py
     
