@@ -6,7 +6,7 @@ It first provides a procedure to determine the axonal voltages for spike time de
 
 ## 1. How to Get Started
 
-To run the code, we used Python 2.6 complied with NEURON 7.3. Place the code folder Code_git in home directory, go to directory ~/Code_git/Models/Brette. Compile the mod file with command nrnivmodl. The other two directories Brette_ka01 and Brette_soma10_ka01 contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models.
+To run the code, we used Python 2.6 complied with NEURON 7.3. Place the code folder Code_git in home directory, go to directory ~/Code_git/Models/Brette. Compile the mod file with command ''' nrnivmodl '''. The other two directories Brette_ka01 and Brette_soma10_ka01 contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models.
 
 ## 2. Determine Axonal Voltage for Spike Time Dectection
 
