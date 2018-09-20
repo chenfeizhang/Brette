@@ -9,7 +9,7 @@ To run simulations, we used NEURON 7.3 with Python 2.6.
 
 ## 2. Search mean and std of stimulus to reproduce expected firing rate and firing pattern for the neuron model. 
 
-    a. Find the axonal voltage with the maximum votlage derivative as spike detection voltage. Go to directory ~/Code_git/Parameters. In param_step0.py, set thresold to 60mV. Injecting the neuron model with a constant input, one can determine the spike detection voltage. To run this file: ~/Code/Models/Brette/x86_64/special -python param_step0.py
+# a. Find the axonal voltage with the maximum votlage derivative as spike detection voltage. Go to directory ~/Code_git/Parameters. In param_step0.py, set thresold to 60mV. Injecting the neuron model with a constant input, one can determine the spike detection voltage. To run this file: ~/Code/Models/Brette/x86_64/special -python param_step0.py
     
     b. Temporarily taking the voltage slightly larger than the spike detection voltage as the reset voltage, search for the constant input to generate 5Hz firing rate in the neuron model with the files param_step1_runjobs.py and param_step1_runme.py. Under the constant input for 5Hz firing rate, take the axonal voltage 2ms after the spike detection voltage as the reset voltage.
     
@@ -17,7 +17,7 @@ To run simulations, we used NEURON 7.3 with Python 2.6.
     
     d. Summarize the mean-std and mean-CV relation with param_step3.py. Find the mean and std that reproduce expected firing rate and CV by hand.
     
-3. Calculate linear response curves.
+## 3. Calculate linear response curves.
 
     a. Write the simulation parameters in the file IparamTable.txt in ~/Code/Models/Brette.
     
