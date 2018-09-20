@@ -5,7 +5,7 @@ To run simulations, we used NEURON 7.3 with Python 2.6.
 
 ## 1. Compile the neuron model:
 
-    a. Go to directory ~/Code_git/Models/Brette. Compile the mod file with nrnivmodl.
+ - Go to directory ~/Code_git/Models/Brette. Compile the mod file with nrnivmodl.
 
 ## 2. Search mean and std of stimulus to reproduce expected firing rate and firing pattern for the neuron model. 
 
