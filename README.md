@@ -1,6 +1,8 @@
 # Python Codes for Neuron Model Simulation and Linear Response Function Calculation:
 
-The Python codes simulate a simple multi-compartment model proposed by [Brette 2013](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003338)
+Python codes here simulate a simple multi-compartment model proposed by [Brette 2013](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003338) and study  
+
+[manuscript](https://arxiv.org/abs/1807.00509)
 
 To run simulations, we used NEURON 7.3 with Python 2.6. 
 
