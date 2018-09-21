@@ -30,13 +30,11 @@ To find target mean and std of stimulus, param_step2_runjobs.py calls param_step
     
 ## 4. Calculate linear response curves.
 
-    a. Write the simulation parameters in the file IparamTable.txt in ~/Code/Models/Brette.
-    
-    b. Calculate the STA for linear response curves with the file runjobs.py in ~/Code/runjobs.
-    
-    c. Calculate the linear response curves with the file transferit.py in ~/Code/transferit. To run this file: ~/Code/Models/Brette/x86_64/special -python transferit.py
+Linear response curves of Brette model is calculated by Fourier transform of spike triggered average (STA) divided by power spetral density of stochastic stimulus. In ```~/Code_git/runjobs```, runjobs.py calls runme.py to generate 400 pieces of STA data for given neuron model and stochastic stimulus. Each piece of STA data is an average of about 5000 pieces of stimulus centered at their spike times. Final STA for linear response curve calculation is an average of these 400 pieces of STA data. addparam.py in ```~/Code_git/scripts``` provides the function for loading parameters from IparamTable.txt.
 
-4. Bootstrapping confidence interval and null hypothesis test.
+transferit.py in ```~/Code_git/transferit``` provides function STA_average for averaging STA data and function gain for calculating linear response curve. STA_average is also used for averaging random STA sampling in bootstrapping. In function gain, STA is first suppressed to zero at its two ends before Fourier transform. For Fourier transform, the STA is cut from the middle and attaches its two ends.  
+
+## 5. Bootstrapping confidence interval and null hypothesis test.
 
     a. Calculate the bootstrapping confidence interval with bootstrapping_runjobs.py. Write the upper bound and lower bound of the confidence intervals into the file of linear response curve with bootstrapping_step2.py.
 
