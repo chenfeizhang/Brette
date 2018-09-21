@@ -24,13 +24,11 @@ To determine spike time dectection voltage at the AP initiation site, we first s
 
 Reset threshold is defined as the axonal voltage 2ms after the spike detection voltage at the constant input that generates expected firing rate. First temporarily set reset threshold slightly larger than spike detection voltage to determine the constant input. Then with the constant input to find final reset threshold.
 
-In ```~/Code_git/Paramters```, param_step1_runjobs.py calls param_step1_runme.py to find the constant input that about to trigger spikes and the constant input that generates 5Hz firing rate. To find targer stimuli, we set the upper bound and lower bound of the stimuli by hand, and use middle point searching method. firingonset.py in ```~/Code_git/scripts``` contains the function that implements this searching method.
+In ```~/Code_git/Paramters```, param_step1_runjobs.py calls param_step1_runme.py to find the constant input that about to trigger spikes and the constant input that generates 5Hz firing rate. To find targer stimuli, we set the upper bound and lower bound of the stimuli by hand, and use middle point searching method. firingonset.py in ```~/Code_git/scripts``` contains the function that implements this searching method. When the upper bound and lower bound are close enough, we assume the parameter searching is precise enough. The programme will stop and return the constant input value and final reset threshold for later simulation.
     
-
+To find target mean and std of stimulus, param_step2_runjobs.py calls param_step2_runme.py for parameter searching. In this step, it picks 200 mean values between zero and the constant input of 5Hz firing, and uses midde point searching method to find correponding std to generate 5Hz firing. Determinestd.py in ```~/Code_git/scripts``` provides the function for std searching. param_step3.py summarizes the data. The mean and std that reproduce expected CV are determined by hand from the scatter plots of mean-std and mean-CV relation.
     
-    d. Summarize the mean-std and mean-CV relation with param_step3.py. Find the mean and std that reproduce expected firing rate and CV by hand.
-    
-## 3. Calculate linear response curves.
+## 4. Calculate linear response curves.
 
     a. Write the simulation parameters in the file IparamTable.txt in ~/Code/Models/Brette.
     
