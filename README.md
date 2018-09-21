@@ -6,9 +6,7 @@ It first provides a procedure to determine the axonal voltages for spike time de
 
 ## 1. How to Get Started
 
-To run the code, we used Python 2.6 complied with NEURON 7.3. Some scripts are run on the cluster. Place the code folder Code_git in home directory, go to directory ```~/Code_git/Models/Brette```. Compile the mod file with command ```nrnivmodl```. The other two directories ```Brette_ka01``` and ```Brette_soma10_ka01``` contain neuron models with different parameter setup. For ```Brette_ka01```, parameter [k_{a}] and ```Brette_soma10_ka01```
-
-Compile corresponding mod files before running simulations with these models. 
+To run the code, we used Python 2.6 complied with NEURON 7.3. Some scripts are run on the cluster. Place the code folder Code_git in home directory, go to directory ```~/Code_git/Models/Brette```. Compile the mod file with command ```nrnivmodl```. The other two directories ```Brette_ka01``` and ```Brette_soma10_ka01``` contain neuron models with different parameter setup. For ```Brette_ka01```, parameter k_a is changed from 6mV to 0.1mV in sodium activation function. For ```Brette_soma10_ka01```, it further changes the soma length and diameters from 50um to 10um. Compile corresponding mod files before running simulations with these models. Following procedures are introduced based on Brette model. They apply to other models by changing the model names. 
 
 ## 2. Determine Axonal Voltage for Spike Time Dectection
 
@@ -43,7 +41,3 @@ transferit.py in ```~/Code_git/transferit``` provides function STA_average for a
 To calculate bootstrapping confidence interval, bootstrapping_runjobs.py in ```~/Code_git/transferit/``` calls bootstrapping runme. In each job, it randomly samples 400 pieces of STA data with replacement and averages them to get a new STA. Linear response curves are calculated with new STAs. There are 1000 curves generated in total. Bootstrapping boundaries are the upper bound and lower bound of middle 95 percent of these curves. bootstrapping_step2.py finds the boundary curves and writes them into the linear response curve data file.
 
 To calculate null hypothesis test curve, nullhypothesis_runjobs.py calls in ```~/Code_git/transferit/``` nullhypothesis_runme.py. In each job, it reproduces the stimuli and load corresponding spike time lists. Adding a random number to each spike time list shuffles spike time. STA data are calculated with the stimuli and new spike time lists. nullhypothesis_step2_runjobs.py calls nullhypothesis_step2_runme.py to calculate linear response curves with these STA data. nullhypothesis_step3.py takes the 95 percent upper bound of these curves as the final null hypothesis test curve and writes it into the linear response curve data file.
-
-
-
-To calculate the linear response curves of Brette's model with high voltage sensitivity, change the sodium activation parameter k_{a} from 6mV to 0.1mV in NaBrette_point.mod and Neuron.hoc, then compile the mod files. For the neuron model with a small soma, change the soma length and diameter from 50um to 10um in Neuron.hoc.
