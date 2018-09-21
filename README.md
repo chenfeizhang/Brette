@@ -24,7 +24,7 @@ To determine spike time dectection voltage at the AP initiation site, we first s
 
 Reset threshold is defined as the axonal voltage 2ms after the spike detection voltage at the constant input that generates expected firing rate. First temporarily set reset threshold slightly larger than spike detection voltage to determine the constant input. Then with the constant input to find final reset threshold.
 
-In ~/Code_git/Paramters, param_step1_runjobs.py calls param_step1_runme.py to find the constant input that about to trigger spikes and the constant input that generates 5Hz firing rate. To find targer stimuli, we set the upper bound and lower bound of the stimuli by hand, and use middle point searching method. firingonset.py in ~/Code_git/scripts contains the function that implements this searching method.
+In ```~/Code_git/Paramters```, param_step1_runjobs.py calls param_step1_runme.py to find the constant input that about to trigger spikes and the constant input that generates 5Hz firing rate. To find targer stimuli, we set the upper bound and lower bound of the stimuli by hand, and use middle point searching method. firingonset.py in ```~/Code_git/scripts``` contains the function that implements this searching method.
     
 
     
