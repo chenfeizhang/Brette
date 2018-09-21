@@ -6,13 +6,13 @@ It first provides a procedure to determine the axonal voltages for spike time de
 
 ## 1. How to Get Started
 
-To run the code, we used Python 2.6 complied with NEURON 7.3. Some scripts are run on the cluster. Place the code folder Code_git in home directory, go to directory ~/Code_git/Models/Brette. Compile the mod file with command ```nrnivmodl```. The other two directories Brette_ka01 and Brette_soma10_ka01 contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models. 
+To run the code, we used Python 2.6 complied with NEURON 7.3. Some scripts are run on the cluster. Place the code folder Code_git in home directory, go to directory ```~/Code_git/Models/Brette```. Compile the mod file with command ```nrnivmodl```. The other two directories ```Brette_ka01``` and ```Brette_soma10_ka01``` contain neuron models with different parameter setup. Compile corresponding mod files before running simulations with these models. 
 
 ## 2. Determine Axonal Voltage for Spike Time Dectection
 
-Brette model is a simple multi-compartment model composed of a soma and an axon. Only sodium channels are located at point on the axon for spike generation (AP initiation site). The rest of the neuron model is passive. To finish a spike, it requires to reset the voltage of the whole neuron when the axonal voltage at the AP initiation site reaches some specific value. We call this reset threshold. To determine the spike time, we choose the axonal voltage with the maximum voltage derivative for spike time dectection.
+Brette model is a simple multi-compartment model composed of a soma and an axon. Only sodium channels are located at point on the axon for spike generation (AP initiation site). The rest of the neuron model is passive. To finish a spike, it requires to reset the voltage by hand when the axonal voltage at the AP initiation site reaches some specific value. We call this reset threshold. To determine the spike time, we choose the axonal voltage with the maximum voltage derivative for spike time dectection.
 
-model_simulation.py in ~/Code_git/Parameters provides a function for model simulation and a function for stimulus generation. It also provides self-test code to run model simulation with the following command:
+model_simulation.py in ```~/Code_git/Parameters``` provides a function for model simulation and a function for stimulus generation. It also provides self-test code to run model simulation with the following command:
 
 ```
 ~/Code_git/Models/Brette/x86_64/special -python model_simulation.py Brette
