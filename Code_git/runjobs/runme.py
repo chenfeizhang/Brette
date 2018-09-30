@@ -35,7 +35,9 @@ param['sf'] = sf
 param['STA_L'] = STA_L
 param['maxtau'] = maxtau
 param['L'] = L
-np.save(foldername + '/param.npy', param)
+if i==1:
+  np.save(foldername + '/param.npy', param)
+  
 spiketimelist = [] # list of spike times for calculating STA
 nspikes = 0 # number of spikes for calculating STA
 STA_tmp = np.zeros(L) # the sum of all spike triggered stimuli
