@@ -36,7 +36,7 @@ for run in range(1,100+1): # null hypothesis test run number
     stim = stim[int(T_relax/dt):]
     random.seed(ii*1000+run) # random seed number for shuffling spike times
     sp2 = np.sort((spiketimelist[k]+random.uniform(1,T_s-1))%T_s) # Add a random number to all spike times and mod them by T_s.
-    sp_STA = np.array([sp for sp in sp2 if sp>(STA_L/2.0) and sp<(T/1000.0-STA_L/2.0)]) # spike time in interval (STA_L/2, T-STA_L/2) for STA
+    sp_STA = np.array([sp for sp in sp2 if sp>(STA_L/2.0+dt_s) and sp<(T/1000.0-STA_L/2.0)]) # spike time in interval (STA_L/2, T-STA_L/2) for STA
     for sp in sp_STA:
       STA_tmp_add =  stim[(int(sp/dt_s)-maxtau-1):(int(sp/dt_s)+maxtau-1)] # spike triggered stimulus
       STA_tmp = STA_tmp + np.array(STA_tmp_add)
