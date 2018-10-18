@@ -16,7 +16,7 @@ def DetermineStdI(simulation, param, leftStd, rightStd, precision_std, stim_mean
   # Middle point searching
   while ((rightStd-leftStd) > precision_std*max([abs(rightStd), abs(leftStd)])):
     print("leftStd is %f, rightStd is %f"%(leftStd, rightStd))
-    stim_std = (leftStd+rightStd)/2
+    stim_std = (leftStd+rightStd)/2.0
     print('std for test is %f'%(stim_std))
     va = simulation(model, tau, posNa, T, thr, stim_mean, stim_std, dt)
     a = np.diff((np.array(va)>spthr)*1.0)
