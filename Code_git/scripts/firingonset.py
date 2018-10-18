@@ -19,7 +19,7 @@ def FiringOnset(simulation, param, leftI, rightI, precision, fr_set):
   # Middle point searching
   while ((rightI-leftI) > precision*max([abs(rightI), abs(leftI)])):
     print("leftI is %f, rightI is %f"%(leftI, rightI))
-    mean = (leftI+rightI)/2
+    mean = (leftI+rightI)/2.0
     print('mean for test is %f'%(mean))
     va = simulation(model, tau, posNa, T, thr, mean, 0, dt)
     a = np.diff((np.array(va)>spthr)*1.0)
