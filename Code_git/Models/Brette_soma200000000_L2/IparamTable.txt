@@ -1,0 +1,2 @@
+fr	tau	posNa	threshold	spthr	mean	std
+5	5	40	-28	-35	5680	5100
