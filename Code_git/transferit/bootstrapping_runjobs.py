@@ -11,10 +11,10 @@ Bootstrapping boundary is the middle 95 percent range of 1000 curves. The bounda
 from subprocess import call
 
 hostname = 'chenfei'
-model = 'Brette'
+model = 'Brette_soma1250_L2'
 runs = 1000
 codedirectory = '/home/%s/Code_git'%(hostname)
-datafolder = '%s/dyn_gain/%s/'%(codedirectory, model)
+datafolder = '/dyn_gain/scratch01/chenfei/%s/'%(model)
 outputdirectory = '%s/Output/'%(datafolder)
 
 queue_option = 'qsub -q hel.q -q fulla.q -q openmp-fulla01.q -t 1:%d:1 -b y -j y -o %s' %(runs, outputdirectory)
