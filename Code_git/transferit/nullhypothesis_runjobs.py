@@ -11,19 +11,19 @@ In figures of our paper, only the linear response curves above the null hypothes
 from subprocess import call
 
 hostname = 'chenfei'
-model = 'Brette'
+model = 'Brette_soma1250_L2'
 runs = 400 # number of series folders
 codedirectory = '/home/%s/Code_git'%(hostname)
-datafolder = '%s/dyn_gain/%s/'%(codedirectory, model)
+datafolder = '/dyn_gain/scratch01/chenfei/%s/'%(model)
 outputdirectory = '%s/Output/'%(datafolder)
 
-queue_option = 'qsub -q fulla.q -q openmp-fulla01.q -t 1:%d:1 -b y -j y -o %s' %(runs, outputdirectory)
+queue_option = 'qsub -q fulla.q -q openmp-fulla01.q -q hel.q -t 1:%d:1 -b y -j y -o %s' %(runs, outputdirectory)
 programme = 'python'
 script = '%s/transferit/nullhypothesis_runme.py'%(codedirectory)
 command = queue_option + ' ' + programme + ' ' + script  
  
-for tau in (5,): 
-    for (thr,posNa) in ((-23,20),): 
+for tau in (5,): #  
+    for (thr,posNa) in ((-18, 40),): # 
       f = 5 
       appendix = 'tau%dfr%dthreshold%dposNa%d'%(tau, f, thr, posNa)
       foldername = datafolder + appendix

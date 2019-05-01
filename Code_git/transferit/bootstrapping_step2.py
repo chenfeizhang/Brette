@@ -10,13 +10,13 @@ import numpy as np
 import scipy.io as sio
 
 hostname = 'chenfei'
-model = 'Brette'
+model = 'Brette_soma1250_L2'
 runs = 1000
 codedirectory = '/home/%s/Code_git'%(hostname)
-datafolder = '%s/dyn_gain/%s/'%(codedirectory, model)
+datafolder = '/dyn_gain/scratch01/chenfei/%s/'%(model)
 
 for tau in (5, ): 
-  for (thr,posNa) in ((-23,20),):
+  for (thr,posNa) in ((-18,40),):
     for fr in (5, ): 
       appendix = 'tau%sfr%sthreshold%sposNa%s'%(tau, fr, thr, posNa)
       foldername = datafolder + appendix
@@ -37,8 +37,8 @@ for tau in (5, ):
       else:
         thr = '%d'%(thr)
       data_appendix = 'tau%sfr%sthreshold%sposNa%s'%(tau, fr, thr, posNa)
-      data = sio.loadmat(datafolder+'transferdata_%s.mat'%(data_appendix))
+      data = sio.loadmat(datafolder+'dynamic_gain_Hz_per_nA_%s.mat'%(data_appendix))
       data['bootstrapping_gain_lower_%s'%(data_appendix)] = bootstrapping_gain_lower
       data['bootstrapping_gain_upper_%s'%(data_appendix)] = bootstrapping_gain_upper
       # Save bootstrapping boundaries in linear response curve data file.
-      sio.savemat(datafolder+'transferdata_%s'%(data_appendix), data)
+      sio.savemat(datafolder+'dynamic_gain_Hz_per_nA_%s'%(data_appendix), data)

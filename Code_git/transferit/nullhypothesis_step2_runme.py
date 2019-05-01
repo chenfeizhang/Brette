@@ -27,8 +27,9 @@ for kk in range(1,runs+1):
   STA = STA + STA_tmp
 
 STA = STA/float(runs)   
-from transferit import gain
-[f, gain_filt] = gain(STA, datafolder, appendix) 
+from transferit import firing_rate_estimate, gain
+fr_estimated = firing_rate_estimate(range(1, runs+1), datafolder, appendix)
+[f, gain_filt] = gain(fr_estimated, STA, datafolder, appendix) 
 transferdata = {'f':f, 'gain':gain_filt}
 np.save(datafolder + appendix + '/nullhypothesis/transferdata_nullhypothesis_run%d'%(ii), transferdata)
 

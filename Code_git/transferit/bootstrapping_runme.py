@@ -15,16 +15,16 @@ os.environ.keys()
 ii = int(os.environ['SGE_TASK_ID'])
 print('ii = %d'%(ii))
 
-from transferit import STA_average, gain
+from transferit import firing_rate_estimate, STA_average, gain
 
-for tau in (5, ):  
-  for (thr,posNa) in ((-23,20),): 
-    for fr in (5, ):
+for tau in (5,):  
+  for (thr,posNa) in ((-18,40),): 
+    for fr in (5,):
       appendix = 'tau%sfr%sthreshold%sposNa%s'%(tau, fr, thr, posNa)
-      # Randomly select STA with replacement.
-      List = [randint(1,runs) for i in range(runs)]
+      fr_estimated = firing_rate_estimate(range(1, runs+1), datafolder, appendix)
+      List = [randint(1,runs) for i in range(runs)] # Randomly select STA with replacement.
       STA = STA_average(List, datafolder, appendix) # averaged STA
-      [f, gain_filt] = gain(STA, datafolder, appendix) 
+      [f, gain_filt] = gain(fr_estimated, STA, datafolder, appendix) 
       transferdata = {'f':f, 'gain':gain_filt}
       if os.path.isdir(datafolder+'/%s/bootstrapping'%(appendix)) == False:
         os.mkdir(datafolder+'/%s/bootstrapping'%(appendix))
