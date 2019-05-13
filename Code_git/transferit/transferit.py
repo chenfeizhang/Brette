@@ -83,7 +83,7 @@ def gain(fr_estimated, STA, datafolder, appendix):
   # fr*STA*(1/dt)/L is the discrete form of the cross correlation of firing rate (represented as the sum of delta functions) and stimulus
   # fft(fr*STA*(1/dt)/L) is the cross power spectrum
   # fft(fr*STA*(1/dt)/L)/sf is the power spectral density, which is fr*fft(STA)/L. Here enbw is the sampling frequency (sf). 
-  ftSTA = np.fft.fft(np.append(STA[L/2:], STA[0:L/2]))/float(L) 
+  ftSTA = np.fft.fft(np.append(STA[L/2:], STA[0:L/2]))/float(sf) 
   ftSTA = ftSTA[0:L/2+1] 
   psd = 2*tau*(10**-3)*(std**2)/(1+(2*math.pi*tau*10**-3*f)**2) # analytical form of the power spectral density of the OU process stimulus (two-sided)
   gain_filt = np.zeros(idx)
@@ -109,7 +109,7 @@ if __name__ == '__main__':
   runs = 400
   datafolder = '/dyn_gain/scratch01/chenfei/%s/'%(model)
 
-  for tau in (5,): 
+  for tau in (5,50): 
     for (thr,posNa) in ((-18, 40), ): 
       for fr in (5, ):
         appendix = 'tau%sfr%sthreshold%sposNa%s'%(tau, fr, thr, posNa)
