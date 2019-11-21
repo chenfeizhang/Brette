@@ -49,7 +49,7 @@ def simulation(model, tau, posNa, T, threshold, stim_mean, stim_std, dt=0.025, s
   h.stimulus = h.IClamp(0.5) # Stimulus is injected in the middle of soma.
   h.stimulus.dur = T # duration of simulus
   h.stim = h.Vector()
-  h.stim.x.from_python(stimulate([stim_mean, stim_std, tau, dt, T, seednumber])) # Generate the stimulus with the OU process.
+  h.stim.from_python(stimulate([stim_mean, stim_std, tau, dt, T, seednumber])) # Generate the stimulus with the OU process.
   h('stim.play(&stimulus.amp, dt)') 
 
   # Axonal voltage recording
